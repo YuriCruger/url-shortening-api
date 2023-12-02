@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link href="/dist/output.css" rel="stylesheet">
+
+  <title>Shortly URL shortening API Challenge</title>
+
+  <style>
+    #boost_section {
+      background-image: url(../images/bg-boost-mobile.svg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    #shorten_section {
+      background-image: url(../images/bg-shorten-mobile.svg);
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-position: center;
+    }
+
+    @media only screen and (min-width: 768px) {
+      #boost_section {
+        background-image: url(../images/bg-boost-desktop.svg);
+      }
+
+      #shorten_section {
+        background-image: url(../images/bg-shorten-desktop.svg);
+      }
+    }
+  </style>
+
+</head>
+
+<body>
+  <header class="p-6 md:flex md:items-center">
+    <div class="flex justify-between items-center">
+      <img src="../images/logo.svg" alt="">
+      <div class="cursor-pointer flex flex-col gap-2 md:hidden" onclick="toggleDropdown()">
+        <div class="w-10 h-[4px] bg-grayish_violet"></div>
+        <div class="w-10 h-[4px] bg-grayish_violet"></div>
+        <div class="w-10 h-[4px] bg-grayish_violet"></div>
+      </div>
+    </div>
+
+    <nav id="navigation_section"
+      class="max-md:hidden mt-4 bg-dark_violet text-white font-bold gap-4 px-4 py-6 rounded-lg flex flex-col items-center text-center md:flex-row md:mt-0 md:w-full md:px-0 md:pl-12 md:bg-white md:text-grayish_violet">
+      <ul class="flex flex-col gap-4 md:flex-row md:gap-12">
+        <li class="hover:text-very_dark_violet duration-300 ease-in-out"><a href="">Features</a></li>
+        <li class="hover:text-very_dark_violet duration-300 ease-in-out"><a href="">Pricing</a></li>
+        <li class="hover:text-very_dark_violet duration-300 ease-in-out"><a href="">Resources</a></li>
+      </ul>
+
+      <div class="md:hidden h-[1px] w-full bg-grayish_violet"></div>
+
+      <div class="flex flex-col items-center gap-4 w-full md:flex-row md:justify-end md:gap-12">
+        <a class="hover:text-very_dark_violet duration-300 ease-in-out" href="">Login</a>
+        <button
+          class="bg-cyan py-2 max-md:w-full rounded-3xl hover:bg-blue_hover duration-300 ease-in-out md:px-10 md:text-white">Sign
+          Up</button>
+      </div>
+    </nav>
+  </header>
+
+  <main class="overflow-hidden">
+    <div class="mx-6 md:flex md:flex-row-reverse md:items-center">
+      <div id="illustration_section" class="-mr-40 md:mb-40">
+        <img src="../images/illustration-working.svg" alt="">
+      </div>
+
+      <div class="mt-10 mb-40 flex flex-col items-center text-center md:text-left md:mr-auto md:items-start md:pr-10">
+        <h1 class="text-5xl font-bold text-very_dark_violet mb-2 md:text-6xl">More than just shorter links</h1>
+        <p class="text-grayish_violet">Build your brand’s recognition and get detailed insights on how your links are
+          performing.</p>
+        <button
+          class="mt-6 bg-cyan text-white py-2 px-10 font-bold rounded-3xl hover:bg-blue_hover duration-300 ease-in-out">Get
+          Started</button>
+      </div>
+
+
+    </div>
+
+    <div class="relative bg-gray_bg">
+
+      <div id="shorten_section"
+        class="absolute inset-x-0 -top-16 mb-6 bg-dark_violet px-6 py-12 rounded-lg flex flex-col gap-4 mx-6 md:flex-row">
+        <input id="linkInput" type="text" placeholder="Shorten a link here..." class="pl-4 py-2 rounded-lg md:w-full">
+        <button id="shortenButton"
+          class="bg-cyan text-white py-2 rounded-lg font-bold hover:bg-blue_hover duration-300 ease-in-out md:w-40">Shorten
+          It!</button>
+      </div>
+
+      <div id="linksContainer" class="pt-40 md:pt-32 mx-6"></div>
+
+      <div class="mx-6 pt-20 mb-10 text-center">
+        <h2 class="font-bold text-very_dark_violet text-2xl mb-4 md:text-3xl">Advanced Statistics</h2>
+        <p class="text-grayish_violet">Track how your links are performing across the web with our advanced statistics
+          dashboard.</p>
+      </div>
+
+      <div class="mx-6 flex flex-col items-center py-10 md:flex-row">
+
+        <div
+          class="bg-white p-6 rounded-lg shadow flex flex-col items-center text-center md:text-left md:items-start md:mb-32">
+          <div class="bg-dark_violet rounded-full p-6 -mt-16">
+            <img src="../images/icon-brand-recognition.svg" alt="">
+          </div>
+          <h3 class="mt-10 mb-4 font-bold text-xl text-very_dark_violet md:text-2xl">Brand Recognition</h3>
+          <p class="text-grayish_violet">Boost your brand recognition with each click. Generic links don’t mean a thing.
+            Branded links help instil
+            confidence in your content.</p>
+        </div>
+
+        <div class="bg-cyan w-2 h-20 md:w-1/5 md:h-2"></div>
+
+        <div
+          class="bg-white p-6 rounded-lg shadow flex flex-col items-center text-center md:text-left md:items-start md:mb-20">
+          <div class="bg-dark_violet rounded-full p-6 -mt-16">
+            <img src="../images/icon-detailed-records.svg" alt="">
+          </div>
+          <h3 class="mt-10 mb-4 font-bold text-xl text-very_dark_violet md:text-2xl">Detailed Records</h3>
+          <p class="text-grayish_violet">Gain insights into who is clicking your links. Knowing when and where people
+            engage with your content helps
+            inform better decisions.</p>
+        </div>
+
+        <div class="bg-cyan w-2 h-20 md:w-1/5 md:h-2"></div>
+
+        <div class="bg-white p-6 rounded-lg shadow flex flex-col items-center text-center md:text-left md:items-start">
+          <div class="bg-dark_violet rounded-full p-6 -mt-16">
+            <img src="../images/icon-fully-customizable.svg" alt="">
+          </div>
+          <h3 class="mt-10 mb-4 font-bold text-xl text-very_dark_violet md:text-2xl">Fully Customizable</h3>
+          <p class="text-grayish_violet">Improve brand awareness and content discoverability through customizable links,
+            supercharging audience
+            engagement.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="boost_section" class="bg-dark_violet py-12">
+      <div class="mx-6 flex items-center flex-col gap-4">
+        <h2 class="text-white font-bold text-2xl md:text-3xl">Boost your links today</h2>
+        <button
+          class="bg-cyan py-2 px-6 rounded-3xl text-white font-bold hover:bg-blue_hover duration-300 ease-in-out">Get
+          Started</button>
+      </div>
+    </div>
+
+    <footer class="bg-very_dark_violet md:flex md:justify-between md:items-center">
+      <div class="flex items-center justify-center mx-6 pt-12 md:pt-0">
+        <img src="../images/logo.svg" alt="logo shortly" class="filter invert">
+      </div>
+      <nav class="mx-6 flex flex-col items-center py-12 gap-10 md:flex-row md:justify-between md:gap-20">
+
+        <ul class="text-center text-gray">
+          <li class="font-bold text-lg mb-4">Features</li>
+          <li class="mb-2 hover:text-cyan ease-in-out duration-300"><a href="">Link Shortening</a></li>
+          <li class="mb-2 hover:text-cyan ease-in-out duration-300"><a href="">Branded Links</a></li>
+          <li class="hover:text-cyan ease-in-out duration-300"><a href="">Analytics</a></li>
+        </ul>
+
+
+        <ul class="text-center text-gray">
+          <li class="font-bold text-lg mb-4">Resources</li>
+          <li class="mb-2 hover:text-cyan ease-in-out duration-300"><a href="">Blog</a></li>
+          <li class="mb-2 hover:text-cyan ease-in-out duration-300"><a href="">Developers</a></li>
+          <li class="hover:text-cyan ease-in-out duration-300"><a href="">Support</a></li>
+        </ul>
+
+
+        <ul class="text-center text-gray">
+          <li class="font-bold text-lg mb-4">Company</li>
+          <li class="mb-2 hover:text-cyan ease-in-out duration-300"><a href="">About</a></li>
+          <li class="mb-2 hover:text-cyan ease-in-out duration-300"><a href="">Our Team</a></li>
+          <li class="mb-2 hover:text-cyan ease-in-out duration-300"><a href="">Careers</a></li>
+          <li class="hover:text-cyan ease-in-out duration-300"><a href="">Contact</a></li>
+        </ul>
+
+
+        <div class="flex items-center gap-6 md:flex-col lg:flex-row">
+          <a href="">
+            <img src="../images/icon-facebook.svg" alt="">
+          </a>
+          <a href="">
+            <img src="../images/icon-twitter.svg" alt="">
+          </a>
+          <a href="">
+            <img src="../images/icon-pinterest.svg" alt="">
+          </a>
+          <a href="">
+            <img src="../images/icon-instagram.svg" alt="">
+          </a>
+        </div>
+      </nav>
+    </footer>
+  </main>
+  <script src="./app.js"></script>
+</body>
+
+</html>
